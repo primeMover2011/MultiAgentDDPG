@@ -69,11 +69,13 @@ The network consists of two networks: The actor network and the critic network.
 
 Here's a plot that shows the development of scores and moving average per episode.
 
-
 ![](assets/plot_winner.png)
+
+Watch the agents play 
+![](assets/my_trained_agent.gif)
 
 ## Next steps
 To improve the agents performance
 - train longer
-- try different learning rates and...
+- try different learning rates, maybe  decaying the noise faster and...
 - of course: implement a scaled up version of PPO and play Starcraft!

@@ -95,12 +95,6 @@ def experiment(n_episodes=20000, ou_noise = 2.0, ou_noise_decay_rate = 0.998, tr
 
 def main():
     os.environ['NO_PROXY'] = 'localhost,127.0.0.*'
-    try:
-        os.chdir(os.path.join(os.getcwd(), 'p3_collab-compet/solution'))
-        print(os.getcwd())
-    except:
-        pass
-
     scores_all, moving_average = experiment(n_episodes=20000, ou_noise=2.0, ou_noise_decay_rate=0.998, train_mode=True,
                    threshold=0.5, buffer_size=1000000, batch_size=512, update_every=2, tau=0.01,
                    lr_actor=0.001, lr_critic=0.001)

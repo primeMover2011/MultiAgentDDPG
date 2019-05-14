@@ -22,11 +22,7 @@ class OUNoise:
     def sample(self):
         """Update internal state and return it as a noise sample."""
         x = self.state
-
-        # W => wiener process with ~N(0, 1)
         dW = np.random.randn(*x.shape)
-
         dx = self.theta * (self.mu - x) + self.sigma * dW
-
         self.state = x + dx
         return self.state
