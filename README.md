@@ -1,16 +1,16 @@
+# Collaboration and Competition using Mulit Agent DDPG and Pytorch
 
 [![Playing Table Tennis](http://img.youtube.com/vi/rYCCLhIvtHQ/0.jpg)](http://www.youtube.com/watch?v=rYCCLhIvtHQ)
 
 [Watch on Youtube](https://www.youtube.com/watch?v=rYCCLhIvtHQ&feature=youtu.be)
 
 
-# Project 3: Collaboration and Competition
 
 ### Introduction
 
-In this project, we will solve the [Tennis](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#tennis) environment.
+In this project, we will solve the [Unity Tennis](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#tennis) environment.
 
-![Trained Agent][image1]
+![Trained Agent](assets/my_trained_agent.gif)
 
 In this environment, two agents control rackets to bounce a ball over a net. If an agent hits the ball over the net, it receives a reward of +0.1.  If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01.  Thus, the goal of each agent is to keep the ball in play.
 
@@ -82,8 +82,8 @@ conda activate MultiAgentDDPG
 
 - Read [the report](report.md) and play around with the code, change some hyperparameters!
 
-#HINT
-_in main.py_ change
+# HINT
+_in [main.py](./main.py)_ change
 ```python
      scores_all, moving_average = experiment(n_episodes=20000, ou_noise=2.0, ou_noise_decay_rate=0.998, train_mode=True,
                    threshold=0.5, buffer_size=1000000, batch_size=512, update_every=2, tau=0.01,
