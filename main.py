@@ -53,7 +53,7 @@ def experiment(n_episodes=20000, ou_noise = 2.0, ou_noise_decay_rate = 0.998, tr
     scores_all = []
     moving_average = []
 
-    for i_episode in range(1, n_episodes + 1):
+    for episode in range(1, n_episodes):
         env_info = env.reset(train_mode=train_mode)[brain_name]
         states = env_info.vector_observations
         maddpgagent.reset()
@@ -70,23 +70,21 @@ def experiment(n_episodes=20000, ou_noise = 2.0, ou_noise_decay_rate = 0.998, tr
             if np.any(dones):
                 break
 
-        ep_best_score = np.max(scores)
-        scores_window.append(ep_best_score)
-        scores_all.append(ep_best_score)
+        best_score = np.max(scores)
+        scores_window.append(best_score)
+        scores_all.append(best_score)
         moving_average.append(np.mean(scores_window))
-        ou_noise *= ou_noise_decay_rate
+        ou_noise *= ou_noise_decay_rate #decaying noise speeds up training.
 
         print('\rEpisode {}\tAverage Training Score: {:.3f}\tMin:{:.3f}\tMax:{:.3f}'
-              .format(i_episode, np.mean(scores_window), np.min(scores_window), np.max(scores_window)), end='')
+              .format(episode, np.mean(scores_window), np.min(scores_window), np.max(scores_window)), end='')
 
-        if i_episode % 100 == 0:
+        if episode % 100 == 0:
             print('\rEpisode {}\tAverage Training Score: {:.3f}\tMin:{:.3f}\tMax:{:.3f}\tMoving Average: {:.3f}'
-                  .format(i_episode, np.mean(scores_window), np.min(scores_window), np.max(scores_window),moving_average[-1]))
+                  .format(episode, np.mean(scores_window), np.min(scores_window), np.max(scores_window),moving_average[-1]))
 
         if moving_average[-1] > threshold:
-            print('<-- Environment solved after {:d} episodes! \
-            \n<-- Moving Average: {:.3f}'.format(
-                i_episode, moving_average[-1]))
+            print(' Environment solved after {:d} episodes! \n Moving Average: {:.3f}'.format(episode, moving_average[-1]))
             maddpgagent.save_models()
             break
     return scores_all, moving_average

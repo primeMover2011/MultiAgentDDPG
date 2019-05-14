@@ -116,15 +116,7 @@ class MADDPGAgent():
             predicted_actions_for_agent = self.flatten(predicted_actions_for_agent)
 
             agent.update_actor(all_states=flat_states, all_predicted_actions=predicted_actions_for_agent)
-
             agent.update_targets()
-
-#            actor_loss, critic_loss = agent.learn(rewards=rewards[:,agent_number].unsqueeze(-1),
-#                        dones = dones[:, agent_number].unsqueeze(-1),
-#                        all_states=flat_states, all_actions=flat_actions,
-#                        all_next_states=flat_next_states, all_next_actions=target_next_actions,
-#                        all_predicted_actions=predicted_actions_for_agent)
-            #self.losses.append([actor_loss, critic_loss])
 
     def flatten(self, tensor):
         return tensor.view(tensor.shape[0], tensor.shape[1] * tensor.shape[2])
